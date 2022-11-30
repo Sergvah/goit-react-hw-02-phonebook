@@ -1,0 +1,8 @@
+.item {
+  display: flex;
+  flex-direction: row;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.text {
+  margin-right: 10px;
+}

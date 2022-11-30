@@ -1,0 +1,8 @@
+.find {
+  display: flex;
+  flex-direction: column;
+}
+.search {
+  margin-top: 20px;
+  width: 100px;
+}
