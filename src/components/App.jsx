@@ -16,18 +16,28 @@ class App extends React.Component {
     filter: '',
   };
   addContact = ({ name, number }) => {
-    console.log(name);
-    console.log(number);
+    // console.log(name);
+    // console.log(number);
 
     const contact = {
       id: nanoid(),
       name,
       number,
     };
-    this.setState(({ contacts }) => ({
-      contacts: [contact, ...contacts],
-    }));
+    const already = this.state.contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+    // console.log(already);
+    if (!already) {
+      this.setState(({ contacts }) => ({
+        contacts: [contact, ...contacts],
+      }));
+    } else {
+      alert(`${contact.name}  is already in contacts.`);
+      return;
+    }
   };
+
   changeFilter = event => {
     this.setState({ filter: event.currentTarget.value });
   };
@@ -38,16 +48,23 @@ class App extends React.Component {
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
-
+  deleteCard = cardId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(card => card.id !== cardId),
+    }));
+  };
   render() {
-    // const visibleContacts = this.getVisibleContacts();
+    const visibleContacts = this.getVisibleContacts();
     return (
       <div className="container">
         <h1>Phonebook</h1>
         <Contacts onSubmit={this.addContact} />
         <h2>Contacts</h2>
         <FilterSearch value={this.state.filter} onChange={this.changeFilter} />
-        <ContactsOfList contacts={this.getVisibleContacts()} />
+        <ContactsOfList
+          contacts={visibleContacts}
+          onDeleteCard={this.deleteCard}
+        />
       </div>
     );
   }

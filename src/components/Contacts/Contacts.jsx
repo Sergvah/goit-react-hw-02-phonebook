@@ -1,7 +1,7 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 import css from 'components/Contacts/contacts.module.css';
-// import ContactOfList from 'components/ContactsOfList';
+import PropTypes from 'prop-types';
 
 class Contacts extends React.Component {
   state = {
@@ -59,3 +59,7 @@ class Contacts extends React.Component {
   }
 }
 export default Contacts;
+
+Contacts.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

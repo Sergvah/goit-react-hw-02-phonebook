@@ -1,4 +1,6 @@
 import css from 'components/FilterSearch/filtersearch.module.css';
+import PropTypes from 'prop-types';
+
 const FilterSearch = ({ value, onChange }) => {
   return (
     <div className={css.find}>
@@ -13,3 +15,8 @@ const FilterSearch = ({ value, onChange }) => {
   );
 };
 export default FilterSearch;
+
+FilterSearch.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
