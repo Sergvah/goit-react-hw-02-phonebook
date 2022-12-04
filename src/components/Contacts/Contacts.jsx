@@ -4,6 +4,8 @@ import css from 'components/Contacts/contacts.module.css';
 import PropTypes from 'prop-types';
 
 class Contacts extends React.Component {
+  static propTypes = { onSubmit: PropTypes.func.isRequired };
+
   state = {
     name: '',
     number: '',
@@ -19,9 +21,9 @@ class Contacts extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log(this.state);
-    this.props.onSubmit(this.state);
-
-    this.reset();
+    if (this.props.onSubmit(this.state) !== 1) {
+      this.reset();
+    }
   };
   reset = () => {
     this.setState({ name: '', number: '' });
@@ -59,7 +61,3 @@ class Contacts extends React.Component {
   }
 }
 export default Contacts;
-
-Contacts.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};

@@ -34,7 +34,7 @@ class App extends React.Component {
       }));
     } else {
       alert(`${contact.name}  is already in contacts.`);
-      return;
+      return 1;
     }
   };
 
